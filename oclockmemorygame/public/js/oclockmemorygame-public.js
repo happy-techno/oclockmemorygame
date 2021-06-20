@@ -8,37 +8,37 @@ class OclockMemoryGame {
 	Le constructeur de la classe
 	*/
 	constructor() {
-		//Nombre de figure de carte sur le plateau
-		this.nbCards = 15; //18 Max  
+	//Nombre de figure de carte sur le plateau
+	this.nbCards = 15; //18 Max  
         //Temps en seconde de la durée limite du jeu
-		this.timeBarDuration = 10*60;  //secondes		      
+	this.timeBarDuration = 10*60;  //secondes		      
         //Permet de tricher pour le debug
-		this.cheatMode = false;
+	this.cheatMode = false;
 		
         //Enregistre le temps au début du jeu
-		this.startTime = new Date();
+	this.startTime = new Date();
         //Défini si le joueur peut continuer à) jour ou si la partie est terminé = gagnée ou perdue
-		this.playing = true;
+	this.playing = true;
         //Création des cartes avec un nombre total = 2 x nbCards
-		this.createCards();
+	this.createCards();
         //Temps en ms pris pour l'animation des cartes
-		this.duration = 250;    //ms
+	this.duration = 250;    //ms
         //Paramètre pour recevoir l'id du timer et pouvoir l'arrêter
-		this.clear_progress = 0;
+	this.clear_progress = 0;
         //Sélection des cartes du plateau
-		this.cardsContainer = document.querySelector('.js-cards');
+	this.cardsContainer = document.querySelector('.js-cards');
         //Création d'un variable Array pour manipuler les cartes
-		this.cards = Array.from(this.cardsContainer.children);
-		//Ajout de l'évènement click sur chaque carte et on fait correspondre la méthode flip
+	this.cards = Array.from(this.cardsContainer.children);
+	//Ajout de l'évènement click sur chaque carte et on fait correspondre la méthode flip
         this.cards.forEach(card => {
-			card.addEventListener('click', this.flip.bind(this, card));
-		});
+		card.addEventListener('click', this.flip.bind(this, card));
+	});
         //affiche les top score
         this.getBestScores();
         //Mélange des cartes
-		this.shuffleCards();
+	this.shuffleCards();
         //Début de la partie
-		this.setTimerbar();
+	this.setTimerbar();
 
 	}
 
@@ -51,8 +51,8 @@ class OclockMemoryGame {
 		for (var i = 1; i <= this.nbCards; i++) {
 			var cheatTxt = ''; if (this.cheatMode) cheatTxt = i;   //si on veut tricher
 			
-            //Création des deux cartes
-            $("#cardsection").append('<div class="game__card js-card" data-fruit="card' + i + '"><div class="game__back-card">' + cheatTxt + '</div><div class="game__front-card"><div class="card' + i + '"></div></div></div>');
+			//Création des deux cartes
+			$("#cardsection").append('<div class="game__card js-card" data-fruit="card' + i + '"><div class="game__back-card">' + cheatTxt + '</div><div class="game__front-card"><div class="card' + i + '"></div></div></div>');
 			$("#cardsection").append('<div class="game__card js-card" data-fruit="card' + i + '"><div class="game__back-card">' + cheatTxt + '</div><div class="game__front-card"><div class="card' + i + '"></div></div></div>');
 		}
 	}
@@ -65,7 +65,7 @@ class OclockMemoryGame {
 	winningMessage() {
 		this.setBestScore();
 		
-        alert('Vous avez gagnééééééé!');
+        	alert('Vous avez gagnééééééé!');
 	}
 
     /*
@@ -76,7 +76,7 @@ class OclockMemoryGame {
 	losingMessage() {
 		this.stopTimerbar();
 		
-        alert('Vous avez perduuuuuuu!');
+        	alert('Vous avez perduuuuuuu!');
 	}
 
     /*
@@ -121,7 +121,7 @@ class OclockMemoryGame {
 		this.cards.forEach(card => {
 			const randomNumber = Math.floor(Math.random() * this.cards.length) + 1;
 			card.classList.remove('has-match');
-            card.style.order = `${randomNumber}`;
+            		card.style.order = `${randomNumber}`;
 		});
 	}
 
@@ -134,26 +134,15 @@ class OclockMemoryGame {
 	checkAllCards() {
 		if (!this.cards.every(card => card.classList.contains('has-match'))) return;
 
-        //stop la partie
-        this.stopTimerbar();
+        	//stop la partie
+        	this.stopTimerbar();
 
-        //on utilise un timer pour laisser le temps de retourner la carte avant d'afficher le message à l'utilisateur
+        	//on utilise un timer pour laisser le temps de retourner la carte avant d'afficher le message à l'utilisateur
 		setTimeout(() => {
 			this.winningMessage();
 		}, this.duration);
 	}
 
-
-    /*
-    Cette méthode stopEvent est utilisée pour 
-    */ 
-	/*stopEvent() {
-		this.cardsContainer.classList.add('no-event');
-
-		setTimeout(() => {
-			this.cardsContainer.classList.remove('no-event');
-		}, this.duration);
-	}*/
 
     /*
     Cette méthode checkIfMatch est utilisée pour vérifier si les deux cartes retournées matches sur le même fruit/images
@@ -170,14 +159,14 @@ class OclockMemoryGame {
 			firstCard.classList.remove('flipped');
 			secondCard.classList.remove('flipped');
             
-            //les deux cartes match et resteront retournées
+            		//les deux cartes match et resteront retournées
 			firstCard.classList.add('has-match');
 			secondCard.classList.add('has-match');
 
 			this.checkAllCards();
 		} else {
 			//on utilise un timer pour laisser le temps de retourner la carte, l'utilisateur peut voir que c'est KO avant de remettre les cartes face cachée
-            setTimeout(() => {
+            		setTimeout(() => {
 				firstCard.classList.remove('flipped');
 				secondCard.classList.remove('flipped');
 			}, this.duration*2);
@@ -194,12 +183,12 @@ class OclockMemoryGame {
     */     
 	flip(selectedCard) {
 		//Si le jeu est terminé, les cartes ne sont plus retournables
-        if (!this.playing) return;
+        	if (!this.playing) return;
 		
-        //retourne la carte
-        selectedCard.classList.add('flipped');
+		//retourne la carte
+        	selectedCard.classList.add('flipped');
 
-        //deux cartes retournées ?
+        	//deux cartes retournées ?
 		const flippedCards = this.cards.filter(card => card.classList.contains('flipped'));
 		if (flippedCards.length === 2) {
 			this.checkIfMatch(flippedCards);
