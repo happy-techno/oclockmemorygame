@@ -1,0 +1,251 @@
+@charset "UTF-8";
+/*
+Global style variable
+*/
+/*
+Style pour le plateau de jeu 
+*/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #2F4274;
+}
+
+.game {
+  min-width: 675px;
+  height: 70vh;
+  background: #2F4274;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.game__cards {
+  width: 820px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 100px;
+  grid-gap: 20px;
+  padding: 0 20px;
+}
+.game__card {
+  position: relative;
+  cursor: pointer;
+  perspective: 800px;
+}
+.game__card.flipped, .game__card.has-match {
+  pointer-events: none;
+}
+.game__card.flipped .game__back-card, .game__card.has-match .game__back-card {
+  transform: rotateY(180deg);
+}
+.game__card.flipped .game__front-card, .game__card.has-match .game__front-card {
+  transform: rotateY(360deg);
+}
+.game__back-card, .game__front-card {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  transition: transform 400ms;
+}
+.game__back-card {
+  z-index: 1;
+  background: #F27922;
+}
+.game__front-card {
+  transform: rotateY(180deg);
+  background: #FFF;
+}
+
+/*
+Style pour les figures des cartes
+*/
+.card1 {
+  background: url("../images/cards.png") left top no-repeat;
+  height: 100px;
+  width: 100px;
+  background-position: 0px 0px;
+}
+
+.card2 {
+  background: url("../images/cards.png") left top no-repeat;
+  height: 100px;
+  width: 100px;
+  background-position: 0px -100px;
+}
+
+.card3 {
+  background: url("../images/cards.png") left top no-repeat;
+  height: 100px;
+  width: 100px;
+  background-position: 0px -200px;
+}
+
+.card4 {
+  background: url("../images/cards.png") left top no-repeat;
+  height: 100px;
+  width: 100px;
+  background-position: 0px -300px;
+}
+
+.card5 {
+  background: url("../images/cards.png") left top no-repeat;
+  height: 100px;
+  width: 100px;
+  background-position: 0px -400px;
+}
+
+.card6 {
+  background: url("../images/cards.png") left top no-repeat;
+  height: 100px;
+  width: 100px;
+  background-position: 0px -500px;
+}
+
+.card7 {
+  background: url("../images/cards.png") left top no-repeat;
+  height: 100px;
+  width: 100px;
+  background-position: 0px -600px;
+}
+
+.card8 {
+  background: url("../images/cards.png") left top no-repeat;
+  height: 100px;
+  width: 100px;
+  background-position: 0px -700px;
+}
+
+.card9 {
+  background: url("../images/cards.png") left top no-repeat;
+  height: 100px;
+  width: 100px;
+  background-position: 0px -800px;
+}
+
+.card10 {
+  background: url("../images/cards.png") left top no-repeat;
+  height: 100px;
+  width: 100px;
+  background-position: 0px -900px;
+}
+
+.card11 {
+  background: url("../images/cards.png") left top no-repeat;
+  height: 100px;
+  width: 100px;
+  background-position: 0px -1000px;
+}
+
+.card12 {
+  background: url("../images/cards.png") left top no-repeat;
+  height: 100px;
+  width: 100px;
+  background-position: 0px -1100px;
+}
+
+.card13 {
+  background: url("../images/cards.png") left top no-repeat;
+  height: 100px;
+  width: 100px;
+  background-position: 0px -1200px;
+}
+
+.card14 {
+  background: url("../images/cards.png") left top no-repeat;
+  height: 100px;
+  width: 100px;
+  background-position: 0px -1300px;
+}
+
+.card15 {
+  background: url("../images/cards.png") left top no-repeat;
+  height: 100px;
+  width: 100px;
+  background-position: 0px -1400px;
+}
+
+.card16 {
+  background: url("../images/cards.png") left top no-repeat;
+  height: 100px;
+  width: 100px;
+  background-position: 0px -1500px;
+}
+
+.card17 {
+  background: url("../images/cards.png") left top no-repeat;
+  height: 100px;
+  width: 100px;
+  background-position: 0px -1600px;
+}
+
+.card18 {
+  background: url("../images/cards.png") left top no-repeat;
+  height: 100px;
+  width: 100px;
+  background-position: 0px -1700px;
+}
+
+/*
+Style pour la barre de progression
+*/
+.progress_bar {
+  width: 100%;
+  height: 32px;
+  width: 820px;
+  border: 1px solid #969696;
+  margin: 0 auto;
+  background: #FFF;
+}
+.progress_bar div {
+  width: 0px;
+  height: 30px;
+  background: #F27922;
+  color: #FFF;
+  text-align: center;
+}
+
+/*
+Style pour les scores
+*/
+div.best_scores {
+  width: 820px;
+  margin: 0 auto;
+  padding-top: 20px;
+  color: #FFF;
+  /* on initialise et nomme un compteur */
+}
+div.best_scores ol {
+  counter-reset: scores;
+}
+div.best_scores li {
+  list-style-type: none;
+  counter-increment: scores;
+  /* on incrémente le compteur à chaque nouveau li */
+  margin-bottom: 10px;
+}
+div.best_scores li:before {
+  content: counter(scores);
+  /* on affiche le compteur */
+  padding: 0 20px 6px;
+  margin-right: 8px;
+  vertical-align: top;
+  background: #F27922;
+  -moz-border-radius: 60px;
+  border-radius: 60px;
+  font-weight: bold;
+  font-size: 0.8em;
+  color: #FFF;
+}
+
+/*# sourceMappingURL=oclockmemorygame-public.css.map */

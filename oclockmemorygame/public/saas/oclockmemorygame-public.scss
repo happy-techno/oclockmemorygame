@@ -1,0 +1,152 @@
+/*
+Global style variable
+*/
+$back-color: #2F4274;
+$primary-color: #F27922;
+$secondary-color: #FFF;
+$text-color: #FFF;
+$border-color: #969696;
+$cards-width: 820px;
+$prog-bar-height: 30px;
+
+/*
+Style pour le plateau de jeu 
+*/
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+    background: $back-color;
+}
+
+.game {
+	$this: &;
+
+	min-width: $cards-width - 145;
+	height: 70vh;
+	background: $back-color;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+    //Défini la disposition des cartes, ici dans un grid à 5 colonnes
+	&__cards {
+		width: $cards-width;
+		margin: auto;
+		display: grid;
+		grid-template-columns: repeat(6, 1fr);
+		grid-auto-rows: 100px;
+		grid-gap: 20px;
+		padding: 0 20px;
+	}
+
+	&__card {
+		position: relative;
+		cursor: pointer;
+		perspective: $cards-width - 20;
+
+        //carte est retournée (flipped) ou déjà retournée car la paire a été trouvée (has-match)
+		&.flipped, &.has-match {
+			pointer-events: none;
+
+			#{$this}__back-card {
+				transform: rotateY(180deg);
+			}
+
+			#{$this}__front-card {
+				transform: rotateY(360deg);
+			}
+		}
+	}
+
+	&__back-card, &__front-card {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;		
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 10px;
+		backface-visibility: hidden;
+		transition: transform 400ms;
+	}
+
+    //carte face cachée
+	&__back-card {
+		z-index: 1;
+        background: $primary-color;
+	}
+
+    //carte face visible
+	&__front-card {
+		transform: rotateY(180deg);
+        background: $secondary-color;
+	}
+}
+
+
+/*
+Style pour les figures des cartes
+*/
+@for $i from 1 through 18 {
+    .card#{$i} {
+        background: url('../images/cards.png') left top no-repeat;
+        height: 100px;        
+        width: 100px;
+        $size: $i - 1;
+        background-position: -0px -100px*$size;
+    }
+}
+
+/*
+Style pour la barre de progression
+*/
+.progress_bar {
+    width: 100%;
+    height: $prog-bar-height + 2;
+    width: $cards-width;
+    border: 1px solid $border-color;
+    margin: 0 auto;
+    background: $secondary-color;
+
+    div {
+        width: 0px;
+        height: $prog-bar-height;
+        background: $primary-color;
+        color: $text-color;
+        text-align: center;
+    }    
+}
+
+/*
+Style pour les scores
+*/
+div.best_scores {
+	width: $cards-width;
+	margin: 0 auto;
+	padding-top: 20px;
+	color: $text-color;
+	ol {counter-reset: scores;} /* on initialise et nomme un compteur */
+	li {
+		list-style-type: none;
+		counter-increment: scores; /* on incrémente le compteur à chaque nouveau li */
+		margin-bottom: 10px;
+	}
+	li:before {
+		content: counter(scores); /* on affiche le compteur */
+		padding: 0 20px 6px;
+		margin-right: 8px;
+		vertical-align: top;
+		background: $primary-color;
+		-moz-border-radius: 60px;
+		border-radius: 60px;
+		font-weight: bold;
+		font-size: 0.8em;
+		color: $text-color;		
+	}
+}
