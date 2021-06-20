@@ -15,12 +15,12 @@ Vous pouvez jouer depuis la page.
 Vous pouvez changer les paramètres de jeux depuis le fichier javascript :
 https://github.com/happy-techno/oclockmemorygame/blob/main/oclockmemorygame/public/js/oclockmemorygame-public.js
 
-	//Nombre de figure de carte sur le plateau 18 Max
-	this.nbCards = 15;  
+//Nombre de figure de carte sur le plateau 18 Max
+this.nbCards = 15;  
   
-  //Temps en seconde de la durée limite du jeu
-	this.timeBarDuration = 10*60;	      
+//Temps en seconde de la durée limite du jeu
+this.timeBarDuration = 10*60;	      
   
-  //Permet de tricher pour le debug
-	this.cheatMode = false;
+//Permet de tricher pour le debug
+this.cheatMode = false;
 
