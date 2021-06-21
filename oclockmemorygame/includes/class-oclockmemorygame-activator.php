@@ -23,9 +23,7 @@
 class Oclockmemorygame_Activator {
 
 	/**
-	 * Short Description. (use period)
-	 *
-	 * Long Description.
+	 * Lors de l'activation du plugin, on créé la table scores si elle n'existe pas
 	 *
 	 * @since    1.0.0
 	 */
@@ -35,7 +33,7 @@ class Oclockmemorygame_Activator {
 		$table_name = $wpdb->prefix . 'scores';
 
 		$scores_sql = "
-			CREATE TABLE `wp_scores` (
+			CREATE TABLE IF NOT EXISTS $table_name (
 				`id` int(11) NOT NULL AUTO_INCREMENT,
 				`date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
 				`score` int(11) NOT NULL,
