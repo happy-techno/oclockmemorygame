@@ -17,7 +17,7 @@ class OclockMemoryGame {
 		
         //Enregistre le temps au début du jeu
 	this.startTime = new Date();
-        //Défini si le joueur peut continuer à) jour ou si la partie est terminé = gagnée ou perdue
+        //Défini si le joueur peut continuer à jouer ou si la partie est terminée = gagnée ou perdue
 	this.playing = true;
         //Création des cartes avec un nombre total = 2 x nbCards
 	this.createCards();
@@ -27,13 +27,13 @@ class OclockMemoryGame {
 	this.clear_progress = 0;
         //Sélection des cartes du plateau
 	this.cardsContainer = document.querySelector('.js-cards');
-        //Création d'un variable Array pour manipuler les cartes
+        //Création d'une variable Array pour manipuler les cartes
 	this.cards = Array.from(this.cardsContainer.children);
 	//Ajout de l'évènement click sur chaque carte et on fait correspondre la méthode flip
         this.cards.forEach(card => {
 		card.addEventListener('click', this.flip.bind(this, card));
 	});
-        //affiche les top score
+        //affiche les top scores
         this.getBestScores();
         //Mélange des cartes
 	this.shuffleCards();
@@ -58,9 +58,9 @@ class OclockMemoryGame {
 	}
 
     /*
-    Cette méthode winningMessage est utilisée quand la partie est gagnée, cad tte les cartes sont retournées avant la fin du temps = timeBarDuration secondes
-    - enregistre le nouveau score en base : setBestScore
-    - affiche un message à l'utilisateur
+    Cette méthode winningMessage est utilisée quand la partie est gagnée, cad toutes les cartes sont retournées avant la fin du temps = timeBarDuration secondes
+    - on enregistre le nouveau score en base : setBestScore
+    - on affiche un message à l'utilisateur
     */
 	winningMessage() {
 		this.setBestScore();
@@ -69,9 +69,9 @@ class OclockMemoryGame {
 	}
 
     /*
-    Cette méthode losingMessage est utilisée quand la partie est perdue, cad tte les cartes ne sont pas retournées avant la fin du temps = timeBarDuration secondes
-    - arrête la partie : stopTimerbar
-    - affiche un message à l'utilisateur
+    Cette méthode losingMessage est utilisée quand la partie est perdue, cad toutes les cartes ne sont pas retournées avant la fin du temps = timeBarDuration secondes
+    - on arrête la partie : stopTimerbar
+    - on affiche un message à l'utilisateur
     */    
 	losingMessage() {
 		this.stopTimerbar();
@@ -127,7 +127,7 @@ class OclockMemoryGame {
 
     /*
     Cette méthode checkAllCards est utilisée pour vérifier les cartes du plateau
-    - si toutes les cartes sont retournées (contient le style has-match) alors c'est que la partie est gagnée et alors : 
+    - si toutes les cartes sont retournées (contient le style has-match) alors c'est que la partie est gagnée et : 
         - on stop la partie
         - on appelle la methode winningMessage
     */     
@@ -149,8 +149,8 @@ class OclockMemoryGame {
     Elle prend en agrument les deux cartes retournées avec le style flipped.
     Si les deux cartes match, alors :
         - on supprime le style flipped et on ajoute celui has-match
-        - on vérifie si l'utilisateur a gagné la partie avec la méthode checkAllCards
-    Si les cartes ne match, alors :
+        - on vérifi si l'utilisateur a gagné la partie avec la méthode checkAllCards
+    Si les cartes ne match pas, alors :
         - on supprime le style flipped
 
     */    
@@ -174,12 +174,12 @@ class OclockMemoryGame {
 	}
 
     /*
-    Cette méthode flip est appellée quand l'utilisateur click sur une carte et veut la retournée
+    Cette méthode flip est appellée quand l'utilisateur click sur une carte et veut la retourner
     Chaque carte bénéficie de cet évènement grâce à la fonction addEventListener utilisée dans le constructeur de la classe du jeu
     Après un click :
     - on ajoute le style flipped pour retourner la carte
     - on check si il existe deux cartes retournées (style = flipped) sur le plateau : cards
-        - si deux cartes sont retournées alors on appalle la méthode pour vérifier si elles match : checkIfMatch
+        - si deux cartes sont retournées alors on appelle cette méthode pour vérifier si elles "match" : checkIfMatch()
     */     
 	flip(selectedCard) {
 		//Si le jeu est terminé, les cartes ne sont plus retournables
@@ -188,7 +188,7 @@ class OclockMemoryGame {
 		//retourne la carte
         	selectedCard.classList.add('flipped');
 
-        	//deux cartes retournées ?
+        	//Si deux cartes retournées => checkIfMatch()
 		const flippedCards = this.cards.filter(card => card.classList.contains('flipped'));
 		if (flippedCards.length === 2) {
 			this.checkIfMatch(flippedCards);
