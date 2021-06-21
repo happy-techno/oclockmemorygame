@@ -12,7 +12,7 @@ Vous pouvez jouer depuis la page.
 
 == Configuration ==
 
-Vous pouvez changer les paramètres de jeux depuis le fichier javascript :
+Vous pouvez changer les paramètres du jeu depuis le fichier javascript :
 https://github.com/happy-techno/oclockmemorygame/blob/main/oclockmemorygame/public/js/oclockmemorygame-public.js
 
 #Nombre de figure de carte sur le plateau 18 Max
