@@ -3,9 +3,6 @@
 /**
  * The file that defines the core plugin class
  *
- * A class definition that includes attributes and functions used across both the
- * public-facing side of the site and the admin area.
- *
  * @link       https://www.linkedin.com/in/joyeux-yohann-36861a97/
  * @since      1.0.0
  *
@@ -16,12 +13,6 @@
 /**
  * The core plugin class.
  *
- * This is used to define internationalization, admin-specific hooks, and
- * public-facing site hooks.
- *
- * Also maintains the unique identifier of this plugin as well as the current
- * version of the plugin.
- *
  * @since      1.0.0
  * @package    Oclockmemorygame
  * @subpackage Oclockmemorygame/includes
@@ -30,8 +21,7 @@
 class Oclockmemorygame {
 
 	/**
-	 * The loader that's responsible for maintaining and registering all hooks that power
-	 * the plugin.
+	 * The loader that's responsible for maintaining and registering all hooks that power the plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   protected
